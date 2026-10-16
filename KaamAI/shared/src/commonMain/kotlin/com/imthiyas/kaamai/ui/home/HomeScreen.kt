@@ -4,11 +4,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.imthiyas.kaamai.domain.model.Task
 
 @Composable
@@ -22,24 +27,68 @@ fun HomeScreen(viewModel: HomeViewModel = remember { HomeViewModel() }) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(all = 16.dp)
         ) {
-            Text(
-                text = "Today's Tasks",
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.primary
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "Manage and track your daily work items",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-            Spacer(modifier = Modifier.height(16.dp))
+
+
+            Card {
+                Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+
+
+                    Text(
+                        text = "✦ YOUR FIELD WORK ASSISTANT",
+                        color = Color.Blue,
+                        fontSize = 12.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        modifier = Modifier.fillMaxWidth().height(52.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
+                        onClick = {}
+                    ) {
+
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = null
+                        )
+
+                        Spacer(modifier = Modifier.width(16.dp))
+                        Text(text = "Start New Visit", color = Color.White)
+                    }
+                }
+            }
+
+
+
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Recent Reports",
+                    style = MaterialTheme.typography.bodyMedium,
+                )
+
+
+                Text(
+                    text = "View All",
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.titleSmall,
+                )
+
+
+            }
+
 
             if (viewModel.tasks.isEmpty()) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("No tasks yet. Tap '+' to add one!", style = MaterialTheme.typography.bodyLarge)
+                    Text(
+                        "No tasks yet. Tap '+' to add one!",
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
             } else {
                 LazyColumn(
@@ -126,7 +175,10 @@ fun TaskItemCard(task: Task, onToggle: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Text(
                         text = task.title,
                         style = MaterialTheme.typography.titleMedium,

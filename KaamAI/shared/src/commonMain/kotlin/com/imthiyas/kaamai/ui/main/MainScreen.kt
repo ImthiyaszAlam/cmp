@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Report
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,7 +43,7 @@ fun MainScreen() {
 
                 Column {
                     Text(
-                        text = "KaamAI",
+                        text = "KaamAI CMP",
                         modifier = Modifier.padding(16.dp),
                         fontWeight = FontWeight.Bold,
                     )
@@ -92,7 +93,7 @@ fun MainScreen() {
             topBar = {
                 TopAppBar(
                     title = {
-                        Text("KaamAI")
+                        Text("KaamAI CMP")
                     },
 
                     navigationIcon = {
@@ -111,6 +112,14 @@ fun MainScreen() {
                         }
                     },
 
+                    actions = {
+                        Icon(
+                            modifier = Modifier.padding(end = 16.dp),
+                            tint = Color.White,
+                            imageVector = Icons.Default.Notifications,
+                            contentDescription = null
+                        )
+                    },
 
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = Color.Blue,
