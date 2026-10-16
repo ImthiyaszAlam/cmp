@@ -18,17 +18,10 @@ fun HomeScreen(viewModel: HomeViewModel = remember { HomeViewModel() }) {
     var newDesc by remember { mutableStateOf("") }
     var newCategory by remember { mutableStateOf("General") }
 
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(onClick = { showAddDialog = true }) {
-                Text("+", style = MaterialTheme.typography.titleLarge)
-            }
-        }
-    ) { padding ->
+    Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
                 .padding(16.dp)
         ) {
             Text(
@@ -58,6 +51,15 @@ fun HomeScreen(viewModel: HomeViewModel = remember { HomeViewModel() }) {
                     }
                 }
             }
+        }
+
+        FloatingActionButton(
+            onClick = { showAddDialog = true },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        ) {
+            Text("+", style = MaterialTheme.typography.titleLarge)
         }
     }
 

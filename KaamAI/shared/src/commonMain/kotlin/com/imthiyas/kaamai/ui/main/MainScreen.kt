@@ -1,5 +1,6 @@
 package com.imthiyas.kaamai.ui.main
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -26,6 +27,7 @@ fun MainScreen() {
     var currentScreen by remember { mutableStateOf<Screen>(Screen.Home) }
 
     val homeViewModel = remember { HomeViewModel() }
+
     val drawerState = rememberDrawerState(
         initialValue = DrawerValue.Closed
     )
@@ -38,11 +40,19 @@ fun MainScreen() {
                 modifier = Modifier.width(300.dp)
             ) {
 
-                Text(
-                    text = "KaamAI",
-                    modifier = Modifier.padding(16.dp),
-                    fontWeight = FontWeight.Bold,
-                )
+                Column {
+                    Text(
+                        text = "KaamAI",
+                        modifier = Modifier.padding(16.dp),
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Text(
+                        text = "Your personal AI Assistant",
+                        modifier = Modifier.padding(11.dp)
+                    )
+                }
+
+
 
                 HorizontalDivider()
 
@@ -115,13 +125,23 @@ fun MainScreen() {
                     NavigationBarItem(
                         selected = currentScreen is Screen.Home,
                         onClick = { currentScreen = Screen.Home },
-                        icon = { Text("🏠", style = MaterialTheme.typography.titleLarge) },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Home,
+                                contentDescription = null
+                            )
+                        },
                         label = { Text("Home") }
                     )
                     NavigationBarItem(
                         selected = currentScreen is Screen.Report,
                         onClick = { currentScreen = Screen.Report },
-                        icon = { Text("📊", style = MaterialTheme.typography.titleLarge) },
+                        icon = {
+                            Icon(
+                                imageVector = Icons.Default.Report,
+                                contentDescription = null
+                            )
+                        },
                         label = { Text("Report") }
                     )
                 }
